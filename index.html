@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فيلا الراحة النفسية – الساحل الشمالي</title>
+    <!-- أيقونات فونت أويزوم الإصدار 6 (أحدث) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- خط جوجل -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== إعدادات عامة (النمط الأقدم الفاتح) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #f5f2ed;
+            color: #1e2b3a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #e0dad4; }
+        ::-webkit-scrollbar-thumb { background: #b8a99a; border-radius: 10px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== فيديو الخلفية ===== */
+        .hero-video {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a2632;
+        }
+
+        .hero-video video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 35, 50, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            animation: fadeInUp 1.8s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            margin-bottom: 10px;
+        }
+        .hero-content h1 span {
+            color: #e8d5b5;
+        }
+        .hero-content p {
+            font-size: 1.6rem;
+            font-weight: 300;
+            opacity: 0.9;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* أزرار التحكم بالفيديو (صوت + تحميل PDF) */
+        .video-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .video-btn {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            font-family: 'Tajawal', sans-serif;
+            text-decoration: none;
+        }
+        .video-btn i { font-size: 1.4rem; }
+        .video-btn:hover {
+            background: #e8d5b5;
+            color: #1e2b3a;
+            transform: scale(1.05);
+            border-color: #e8d5b5;
+        }
+        .video-btn.pdf-btn {
+            background: #e8d5b5;
+            color: #1e2b3a;
+        }
+        .video-btn.pdf-btn:hover {
+            background: #fff;
+            color: #1e2b3a;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== شعار الترحيب ===== */
+        .welcome-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 5;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 28px;
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .welcome-badge i {
+            color: #e8d5b5;
+        }
+
+        /* ===== الأقسام ===== */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1e2b3a;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #b8a99a;
+            margin: 15px auto 0;
+            border-radius: 4px;
+        }
+        .section-sub {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #5a6b7a;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        /* ===== معرض الصور ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: #fff;
+            aspect-ratio: 4/3;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+            display: block;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ===== لايت بوكس ===== */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 30px;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            object-fit: contain;
+            animation: zoomIn 0.4s ease;
+        }
+        .lightbox-overlay .close-lb {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: #fff;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(0,0,0,0.3);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .lightbox-overlay .close-lb:hover {
+            background: #e74c3c;
+            transform: rotate(90deg);
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ===== بطاقات المميزات ===== */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .highlight-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 24px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: 0.4s;
+            text-align: center;
+            border-bottom: 5px solid #e8d5b5;
+        }
+        .highlight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+        }
+        .highlight-card i {
+            font-size: 2.8rem;
+            color: #b8a99a;
+            margin-bottom: 15px;
+        }
+        .highlight-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1e2b3a;
+        }
+        .highlight-card p {
+            color: #5a6b7a;
+            line-height: 1.7;
+        }
+
+        /* ===== قائمة المميزات ===== */
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            margin-top: 20px;
+        }
+        .feature-list li {
+            list-style: none;
+            font-size: 1.1rem;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0ebe6;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1e2b3a;
+        }
+        .feature-list li i {
+            color: #b8a99a;
+            font-size: 1.3rem;
+            width: 28px;
+        }
+        .feature-list li:last-child { border-bottom: none; }
+
+        /* ===== أزرار التواصل ===== */
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 30px;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 38px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            border: 2px solid transparent;
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+        .contact-btn i { font-size: 1.6rem; }
+        .contact-btn.whatsapp { background: #25D366; }
+        .contact-btn.whatsapp:hover { background: #1da851; transform: scale(1.04); }
+        .contact-btn.phone { background: #3b7a9e; }
+        .contact-btn.phone:hover { background: #2d617f; transform: scale(1.04); }
+        .contact-btn.telegram { background: #0088cc; }
+        .contact-btn.telegram:hover { background: #006fa8; transform: scale(1.04); }
+        .contact-btn.download { background: #b8a99a; color: #1e2b3a; }
+        .contact-btn.download:hover { background: #a08f7e; transform: scale(1.04); }
+
+        /* ===== أنيميشن التمرير ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== تذييل ===== */
+        footer {
+            background: #1e2b3a;
+            color: #cfc7be;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 3px solid #e8d5b5;
+        }
+        footer a { color: #e8d5b5; text-decoration: none; }
+
+        /* ===== كشف الجهاز: تنسيقات خاصة ===== */
+        .device-mobile .hero-content h1 { font-size: 2.8rem; }
+        .device-mobile .hero-content p { font-size: 1.2rem; }
+        .device-mobile .video-controls { bottom: 20px; gap: 12px; flex-direction: column; align-items: center; }
+        .device-mobile .video-btn { padding: 10px 20px; font-size: 0.9rem; width: 90%; justify-content: center; }
+        .device-mobile .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+        .device-mobile .feature-list { grid-template-columns: 1fr; padding: 30px 20px; }
+        .device-mobile .section-title { font-size: 2rem; }
+        .device-mobile .welcome-badge { top: 15px; right: 15px; padding: 6px 16px; font-size: 0.9rem; }
+
+        .device-tablet .hero-content h1 { font-size: 3.8rem; }
+        .device-tablet .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+        .device-desktop .hero-content h1 { font-size: 5rem; }
+
+        /* ===== استجابة عامة ===== */
+        @media (max-width: 768px) {
+            .feature-list { grid-template-columns: 1fr; padding: 30px 20px; }
+            .contact-btn { padding: 14px 26px; font-size: 1rem; }
+            .highlight-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .highlight-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.4rem; }
+            .hero-content p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== فيديو الخلفية ===== -->
+    <div class="hero-video" id="home">
+        <video id="bgVideo" autoplay muted loop playsinline>
+            <source src="viedo.mp4" type="video/mp4">
+            <!-- رابط احتياطي تجريبي -->
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+
+        <!-- شعار الترحيب -->
+        <div class="welcome-badge">
+            <i class="fas fa-umbrella-beach"></i> فيلا الراحة النفسية
+        </div>
+
+        <div class="hero-content">
+            <h1>فيلا <span>الراحة النفسية</span></h1>
+            <p>صف أول بحر مباشر – سيدي عبد الرحمن</p>
+            <!-- تم إزالة الإيجار من هنا -->
+        </div>
+
+        <!-- أزرار التحكم بالفيديو (صوت + تحميل PDF) -->
+        <div class="video-controls">
+            <button id="soundToggle" class="video-btn">
+                <i class="fas fa-volume-mute"></i> <span id="soundLabel">تشغيل الصوت</span>
+            </button>
+            <a href="pdf.pdf" download class="video-btn pdf-btn">
+                <i class="fas fa-file-pdf"></i> تحميل PDF
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== معرض الصور ===== -->
+    <section id="gallery" class="container scroll-animate">
+        <h2 class="section-title">معرض الصور</h2>
+        <p class="section-sub">انقر على أي صورة لتكبيرها واستمتع بالتفاصيل.</p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- ===== معلومات الفيلا ===== -->
+    <section class="container scroll-animate">
+        <h2 class="section-title">لماذا هذه الفيلا؟</h2>
+        <p class="section-sub">تركيبة نادرة لا تتكرر في سيدي عبد الرحمن، تجمع بين الموقع والمساحة والخصوصية.</p>
+
+        <div class="highlight-grid">
+            <div class="highlight-card">
+                <i class="fas fa-water"></i>
+                <h3>صف أول بحر مباشر</h3>
+                <p>أرض 320م بوجهة بحرية عريضة 15م، وواجهة خلفية 22م على حديقة خاصة.</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>خصوصية مزدوجة</h3>
+                <p>الجيران مميزون لان كل شخص لديه خصوصيه  يوجد! فيو مفتوح بالكامل، وجنينة خلفية توفر هدوءاً مطلقاً.</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>استثمار آمن</h3>
+                <p>قيمة العقار تتضاعف سنوياً، وقابل للإيجار اليومي المربح كمان ان الاوراق كلها سليمه </p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>جاهز للاستلام الفوري</h3>
+                <p>تشطيب راقي، تكييفات، أثاث، وأجهزة – كل شيء جاهز لكي تنسي همومك كلها .</p>
+            </div>
+        </div>
+
+        <!-- نقاط إضافية -->
+        <div style="margin-top: 40px;">
+            <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; text-align: center; color: #1e2b3a;">✨ مميزات فريدة</h3>
+            <ul class="feature-list">
+                <li><i class="fas fa-crown"></i> فيلا مستقلة – دورين – مساحة مباني 160م</li>
+                <li><i class="fas fa-bed"></i> 3 غرف نوم مريحة + 2 حمام + جراج</li>
+                <li><i class="fas fa-kitchen-set"></i> ريسبشن واسع يطل على البحر، مطبخ أميركي مفتوح</li>
+                <li><i class="fas fa-tree"></i> حديقة خاصة تفتح مباشرة على الشاطئ</li>
+                <li><i class="fas fa-map-pin"></i> الكيلو 131 – بجوار مراسي، أمواج، سي شيل</li>
+                <li><i class="fas fa-hand-holding-usd"></i> نظام البيع: كاش فقط – لا تقسيط</li>
+            </ul>
+        </div>
+
+        <!-- نص مخصص -->
+        <div style="background: #fff; border-radius: 30px; padding: 30px; margin-top: 35px; box-shadow: 0 6px 20px rgba(0,0,0,0.03);">
+            <p style="font-size: 1.2rem; line-height: 2; color: #1e2b3a;">
+                <i class="fas fa-quote-right" style="color: #b8a99a; font-size: 2rem; float: right; margin-right: 10px;"></i>
+                <strong>التركيبة دي مش موجودة في منطقة سيدي عبد الرحمن.</strong> 
+                انت بتشتري أرض 320م صف أول بحر مباشر – الأراضي دي انتهت خلاص. 
+                الخصوصية المزدوجة، الاستثمار الآمن، والتشطيب الفاخر يجعلك تمتلك جوهرة نادرة.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== التواصل ===== -->
+    <section class="container scroll-animate" style="padding-top: 20px;">
+        <h2 class="section-title">تواصل مع المالك</h2>
+        <p class="section-sub">للمعاينة أو الاستفسار، راسلنا على واتساب أو اتصل بنا.</p>
+
+        <div class="contact-buttons">
+            <a href="https://wa.me/201097429018" target="_blank" class="contact-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> واتساب
+            </a>
+            <a href="tel:+201097429018" class="contact-btn phone">
+                <i class="fas fa-phone-alt"></i> اتصل الآن
+            </a>
+            <a href="https://t.me/+201092291903" target="_blank" class="contact-btn telegram">
+                <i class="fab fa-telegram-plane"></i> تليجرام 
+            </a>
+            <a href="pdf.pdf" download class="contact-btn download">
+                <i class="fas fa-file-pdf"></i> تحميل PDF
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; font-size: 1.1rem; color: #5a6b7a;">
+            <i class="fas fa-mobile-alt" style="margin-left: 8px;"></i> 
+            <strong>01097429018</strong> &nbsp;|&nbsp; <strong>01092291903</strong>
+            <br><span style="font-size: 0.9rem;">(المالك الأصلي ومساعد)</span>
+        </div>
+    </section>
+
+    <!-- ===== تذييل مع ذكر الشركة ===== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 فيلا الراحة النفسية – تصميم وتطوير <strong>Mblack</strong></p>
+            <p style="margin-top: 8px; font-size: 0.9rem; opacity: 0.7;">
+                <i class="fas fa-map-marker-alt"></i> الكيلو 131 – المربع الذهبي – بجوار مراسي، أمواج، سي شيل
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== لايت بوكس ===== -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="close-lb" id="closeLb"><i class="fas fa-times"></i></div>
+        <img src="" alt="صورة مكبرة" id="lightboxImg">
+    </div>
+
+   
+       <script>
+    // ============================================================
+    // 1. كشف نوع الجهاز (موبايل / تابلت / كمبيوتر)
+    // ============================================================
+    function detectDevice() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const body = document.body;
+
+        if (/android/i.test(userAgent)) {
+            body.classList.add(window.innerWidth <= 768 ? 'device-mobile' : 'device-tablet');
+        } else if (/iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+            body.classList.add(window.innerWidth <= 768 ? 'device-mobile' : 'device-tablet');
+        } else {
+            body.classList.add('device-desktop');
+        }
+
+        window.addEventListener('resize', function() {
+            const width = window.innerWidth;
+            body.classList.remove('device-mobile', 'device-tablet', 'device-desktop');
+            if (width <= 768) body.classList.add('device-mobile');
+            else if (width <= 1024) body.classList.add('device-tablet');
+            else body.classList.add('device-desktop');
+        });
+    }
+    detectDevice();
+
+    // ============================================================
+    // 2. التحكم في صوت الفيديو
+    // ============================================================
+    const video = document.getElementById('bgVideo');
+    const soundToggle = document.getElementById('soundToggle');
+    const soundLabel = document.getElementById('soundLabel');
+    let isMuted = true;
+
+    soundToggle.addEventListener('click', function() {
+        isMuted = !isMuted;
+        video.muted = isMuted;
+        soundLabel.textContent = isMuted ? 'تشغيل الصوت' : 'كتم الصوت';
+        this.querySelector('i').className = isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+    });
+
+    // ============================================================
+    // 3. ★★★ قائمة الصور (عدّل هنا فقط ★★★)
+    // ============================================================
+    // ضع مسارات صورك بالضبط داخل المجلد images/
+    const imagesList = [
+        { src: 'images/photo1.jpg', alt: 'واجهة الفيلا' },
+        { src: 'images/photo2.jpg', alt: 'إطلالة بحر' },
+        { src: 'images/photo3.jpg', alt: 'غرفة نوم' },
+        { src: 'images/photo4.jpg', alt: 'تراس وحديقة' },
+        { src: 'images/photo5.jpg', alt: 'مطبخ أميركي' },
+        { src: 'images/photo6.jpg', alt: 'حمام فاخر' },
+        { src: 'images/photo7.jpg', alt: 'منظر غروب' },
+        { src: 'images/photo8.jpg', alt: 'المسبح الخاص' },
+        { src: 'images/photo9.jpg', alt: 'المسبح الخاص' },
+        { src: 'images/photo10.jpg', alt: 'المسبح الخاص' },
+        { src: 'images/photo11.jpg', alt: 'المسبح الخاص' },
+        { src: 'images/photo12.jpg', alt: 'المسبح الخاص' },
+    ];
+
+    // ============================================================
+    // 4. دالة جلب الصورة (لا تغيرها)
+    // ============================================================
+    function getImageSrc(item) {
+        return item.src; // ترجع المسار المحدد في القائمة أعلاه
+    }
+
+    // ============================================================
+    // 5. بناء معرض الصور
+    // ============================================================
+    const galleryGrid = document.getElementById('galleryGrid');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeLb = document.getElementById('closeLb');
+
+    imagesList.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        const img = document.createElement('img');
+        img.src = getImageSrc(item);
+        img.alt = item.alt || `صورة ${index+1}`;
+        img.loading = 'lazy';
+        div.appendChild(img);
+
+        div.addEventListener('click', function() {
+            lightboxImg.src = this.querySelector('img').src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        galleryGrid.appendChild(div);
+    });
+
+    // ============================================================
+    // 6. إغلاق اللايت بوكس
+    // ============================================================
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    closeLb.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ============================================================
+    // 7. أنيميشن التمرير
+    // ============================================================
+    const scrollElements = document.querySelectorAll('.scroll-animate');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+    scrollElements.forEach(el => observer.observe(el));
+
+    console.log('✅ فيلا الراحة النفسية – تصميم Mblack');
+</script>
+</body>
+</html>
